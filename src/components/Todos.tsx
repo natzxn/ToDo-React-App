@@ -24,45 +24,53 @@ const Todos: FC = () => {
   }
 
   const { todos, selectedDay }: TodoContextProps = contextValue;
-  //ACTUAL DAY AS INTEGER - USE FOR INDEX
   const today = parseInt(moment().format('d'), 10); 
 
     return (
-        <div className='Todos'>
-            <div className='selected-task'>
-                {selectedDay}
-            </div>
-            <div className="todos">
-            {selectedDay === "next 7 days" ?
-          <Next7Days  
-          todos={todos.filter((todo: TodoItem) => {
-            const tomorrow = moment().add(1, 'day').startOf('day');
-            const next7DaysWithoutToday = moment(tomorrow).add(7, 'days');
-            const todoDate = moment(todo.date, 'DD/MM/YYYY');
-            return todoDate.isBetween(tomorrow, next7DaysWithoutToday, undefined, '[]'); //FILTER NEXT 7 DAYS (WITHOUT 'TODAY')
-          })}
-          
-          />
-          :
-          selectedDay === "previous 7 days" ?
-          <Prev7Days  
-          todos={todos.filter((todo:TodoItem) => {
-            const previous7Days = moment().subtract(7, 'days').startOf('day');
-            const todoDate = moment(todo.date, 'DD/MM/YYYY');
-            return todoDate.isBetween(previous7Days, moment(), undefined, '[]'); //FILTER PREVIOUS 7 DAYS (WITH 'TODAY')
-          })}
-          
-          />
-          :
-          todos.map((todo: TodoItem) =>
-            selectedDay === "today" && parseInt(todo.day, 10) !== today ?
-              null
-              :
-              <Todo todo={todo} key={todo.id} />  
-                )
-            } 
-            </div>
+      <div className="Todos">
+        <div className="selected-task">{selectedDay}</div>
+        <div className="todos">
+          {selectedDay === "next 7 days" ? (
+            <Next7Days
+              todos={todos.filter((todo: TodoItem) => { 
+                const tomorrow = moment().add(1, "day").startOf("day"); 
+                const next7DaysWithoutToday = moment(tomorrow).add(7, "days"); 
+                const todoDate = moment(todo.date, "DD/MM/YYYY");
+                return todoDate.isBetween( 
+                  tomorrow,
+                  next7DaysWithoutToday,
+                  undefined,
+                  "[]"
+                ); //FILTER NEXT 7 DAYS (WITHOUT 'TODAY')
+              })}
+            />
+          ) : selectedDay === "previous 7 days" ? (
+            <Prev7Days
+              todos={todos.filter((todo: TodoItem) => {
+                const today = moment().startOf("day");
+                const previous7Days = moment()
+                  .subtract(7, "days")
+                  .startOf("day"); 
+                const todoDate = moment(todo.date, "DD/MM/YYYY"); 
+
+                return (
+                  todoDate.isBetween(previous7Days, today, undefined, "(]") ||
+                  todoDate.isSame(today, "day") 
+                );
+              })}
+            />
+          ) : selectedDay === "all days" ? (
+            todos.map((todo: TodoItem) => <Todo todo={todo} key={todo.id} />) 
+          ) : (
+            todos.map((todo: TodoItem) =>
+              selectedDay === "today" &&
+              moment(todo.date, "DD/MM/YYYY").isSame(moment(), "day") ? ( 
+                <Todo todo={todo} key={todo.id} />
+              ) : null
+            )
+          )}
         </div>
+      </div>
     ); //FILTER TODAY TODOS
 }
 
