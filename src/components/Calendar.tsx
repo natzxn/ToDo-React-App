@@ -43,20 +43,19 @@ import { animated, useSpring } from '@react-spring/web';
                     </span>
                 </animated.div>
             </div>
-            <animated.div style={menuAnimation} className="items">
-                {
-                    calendarItems.map(item =>
-                        <div 
-                            className="item" 
-                            key={item}
-                            onClick={() => setselectedDay(item)}
-                        >
-                            {item}
-                        </div>
-                        
-                    )
-                }
-            </animated.div>
+          <animated.div style={menuAnimation} className="items">
+            <ul>
+              {calendarItems.map((item) => (
+                <li
+                  className="item"
+                  key={item}
+                  onClick={() => setselectedDay(item)}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </animated.div>
         </div>
     )
 }
