@@ -252,6 +252,20 @@
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
+@media screen and (max-width: 1200px) {
+    .Todos {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .Todos {
+        width: 350px;
+        height: 40%;
+        bottom: 53%;
+    }
+}
+
 .Todos::-webkit-scrollbar {
     width: 16px;
   }
