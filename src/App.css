@@ -18,8 +18,7 @@
 /* ====================== SIDEBAR ====================== */
 
 .Sidebar {
-    width: 16rem;
-    min-width: 10rem;
+    flex-basis: 16rem;
     background-color: #FFF;
     height: 100%;
     box-shadow: 0 0 3px #6462624f;
