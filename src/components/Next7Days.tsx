@@ -1,16 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import moment from 'moment';
 import Todo from './Todo';
-
-interface TodoItem {
-  id: string;
-  text: string;
-  time: string;
-  date: string;
-  day: string;
-  checked: boolean;
-  color: string;
-}
+import { TodoItem } from './Todos';
 
 interface WeekTodo {
   todos: TodoItem[];
