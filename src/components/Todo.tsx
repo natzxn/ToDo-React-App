@@ -5,17 +5,10 @@ import firebase from '../firebase'
 import moment from 'moment';
 import { TodoContext, TodoContextProps } from '../context';
 import { animated, useSpring } from '@react-spring/web';
-
+import { TodoItem } from './Todos';
 
 interface TodoProps {
-  todo: {
-    id: string
-    text: string;
-    checked: boolean;
-    color: string;
-    time: string;
-    date: string;
-  };
+  todo: TodoItem;
 }
 
 const Todo: FC<TodoProps> = ({ todo }) => {
