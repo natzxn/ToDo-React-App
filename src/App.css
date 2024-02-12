@@ -252,13 +252,13 @@
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1230px) {
     .Todos {
         width: 350px;
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1000px) {
     .Todos {
         width: 350px;
         height: 40%;
@@ -349,14 +349,14 @@
     opacity: 0.7;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1230px) {
     .EditTodo {
         width: 350px;
         left: calc(40px + 350px + 20px);
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1000px) {
     .EditTodo {
         width: 350px;
         height: 40%;
