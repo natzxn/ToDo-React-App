@@ -40,9 +40,15 @@ const TodoForm: FC<TodoFormProps> = ({
             <input
               type="text"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => { 
+                const inputValue = e.target.value;
+                if (inputValue.trim() !== '' || inputValue === '') {
+                setText(inputValue);
+                }}}
               placeholder="To do..."
               autoFocus
+              maxLength={45}
+              required
             />
           </div>
           <div className="pick-day">
