@@ -4,6 +4,7 @@ import { TodoContext } from '../context';
 import moment from 'moment';
 import firebase from '../firebase';
 import { getFirestore, updateDoc ,doc } from 'firebase/firestore';
+import  handleSubmit  from './AddNewTodo';
 
 
 function EditTodo(): JSX.Element {
@@ -39,10 +40,6 @@ function EditTodo(): JSX.Element {
       });
     }
   }, [text, day, time, selectedTodo]);
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
-    // Handle form submission
-  }
 
   return (
     <div>
