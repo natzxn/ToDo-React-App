@@ -29,8 +29,8 @@ const Todo: FC<TodoProps> = ({ todo }) => {
   const { selectedTodo, setSelectedTodo }: TodoContextProps = contextValue;
 
   //HANDLE DELETE
-  const handleDelete = (todo: TodoProps['todo']) => {
-    deleteTodo(todo)
+  const handleDelete = async (todo: TodoProps['todo']) => {
+  await deleteTodo(todo)
     if(selectedTodo === todo){
       setSelectedTodo(undefined)
     }
