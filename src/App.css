@@ -19,6 +19,7 @@
 
 .Sidebar {
     flex-basis: 16rem;
+    flex-shrink: 0;
     background-color: #FFF;
     height: 100%;
     box-shadow: 0 0 3px #6462624f;
