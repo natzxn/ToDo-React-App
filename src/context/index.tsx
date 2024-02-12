@@ -5,9 +5,9 @@ import { useTodos } from '../hooks';
 export interface TodoContextProps {
   selectedDay: string;
   setselectedDay: (task: string) => void;
-  todos: any;
-  selectedTodo: any;
-  setSelectedTodo: React.Dispatch<SetStateAction<any>>;
+  todos: TodoItem[];
+  selectedTodo: TodoItem | null;
+  setSelectedTodo: React.Dispatch<SetStateAction<TodoItem | null>>;
 }
 
 export const TodoContext = createContext<TodoContextProps | undefined>(undefined);
