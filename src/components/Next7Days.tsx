@@ -3,11 +3,6 @@ import moment from 'moment';
 import Todo from './Todo';
 import { TodoItem } from './Todos';
 
-interface WeekTodo {
-  todos: TodoItem[];
-  number: string;
-}
-
 interface Next7DaysProps {
   todos: TodoItem[];
 }
@@ -15,7 +10,6 @@ interface Next7DaysProps {
 const Next7Days: FC<Next7DaysProps> = ({ todos }) => {
     const [weekTodos, setWeekTodos] = useState<WeekTodo[]>([]);
   
-    useEffect(() => {
       const days: string[] = ['0', '1', '2', '3', '4', '5', '6']; //INDEX AS WEEK DAY
   
       const sortedTodosByDay = days.map(day => {
@@ -24,18 +18,15 @@ const Next7Days: FC<Next7DaysProps> = ({ todos }) => {
           number: day
         };
       });
-   
       
       // ARRANGE DAYS
       const arrangeDays = sortedTodosByDay
       .slice(days.indexOf(moment().format('d')) + 1)
       .concat(sortedTodosByDay.slice(0, days.indexOf(moment().format('d')) + 1)); // 7 DAYS AHEAD FROM TOMORROW
-      setWeekTodos(arrangeDays);
-    }, [todos]);
   
     return (
       <div className='Next7Days'>
-        {weekTodos.map(day => (
+        {arrangeDays.map(day => (
           <div key={day.number}>
             <div className="day">
               <div className="name">
