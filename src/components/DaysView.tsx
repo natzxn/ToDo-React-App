@@ -13,7 +13,7 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
   const today = moment().format('d');
 
   const filterTodos = (todo: TodoItem) => {
-    const todoDate = moment(todo.date, "DD/MM/YYYY");
+    const todoDate = moment(todo.date);
 
     if (viewType === "next") {
       return todoDate.isBetween(
@@ -24,8 +24,8 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
       );
     } else if (viewType === "previous") {
       return todoDate.isBetween(
-        moment().subtract(7, "days").startOf("day"),
-        moment().startOf("day"),
+        moment().subtract(8, "days").startOf("day"),
+        moment().subtract(1, "day").endOf("day"),
         undefined,
         "(]"
       );
@@ -50,10 +50,16 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
     };
   });
 
-  const arrangeDays =
-    viewType === 'next'
-      ? sortedTodosByDay.slice(days.indexOf(today) + 1).concat(sortedTodosByDay.slice(0, days.indexOf(today) + 1))
-      : sortedTodosByDay.slice(days.indexOf(today) + 1).concat(sortedTodosByDay.slice(0, days.indexOf(today) + 1));
+  let arrangeDays = sortedTodosByDay;
+
+  if (viewType === 'next') {
+    arrangeDays = arrangeDays.slice(days.indexOf(today) + 1).concat(arrangeDays.slice(0, days.indexOf(today) + 1));
+  } else if (viewType === 'previous') {
+    // Posortuj zadania w ramach każdego dnia od najnowszego do najstarszego
+    arrangeDays.forEach(day => {
+      day.todos.sort((a, b) => moment(b.date, 'DD/MM/YYYY').diff(moment(a.date, 'DD/MM/YYYY')));
+    });
+  }
 
   return (
     <div className={viewType === 'next' ? 'Next7Days' : 'Previous7Days'}>
@@ -61,7 +67,7 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
       <div key={day.number}>
         <div className="day">
           <div className="name">
-            {moment(day.number, 'd').format('dddd')}
+            {moment().day(day.number).format('dddd')}
             {day.number === today && viewType === 'next' && day.todos.length > 0 }
           </div>
           <div className="total-todos">( {day.todos.length} )</div>
