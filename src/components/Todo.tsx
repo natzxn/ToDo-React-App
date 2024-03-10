@@ -63,7 +63,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
     }
   };
 
-  const todoDate = moment(todo.date, 'DD/MM/YYYY');
+  const todoDate = moment(todo.date);
   const todayDate = moment();
   const isTaskDue = !todo.checked && todoDate.isBefore(todayDate) && !todayDate.isSame(todoDate, 'day');  //CHECK IF TASK HAS BEEN DONE OR NOT
 
@@ -94,7 +94,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
             >
           <p style={{ color: todo.checked ? '#bebebe' : '#000000' }}>{todo.text}</p>
           <span>
-            {todo.date} - {todo.time}
+            {moment(todo.date).format('DD/MM/YYYY')} - {moment(todo.time).format('HH:mm')}
           </span>
 
           <div className={`line ${todo.checked ? 'line-through' : ''}`}></div>
