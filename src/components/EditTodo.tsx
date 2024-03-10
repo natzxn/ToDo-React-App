@@ -1,35 +1,42 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
-import { TodoContext } from '../context';
-import moment from 'moment';
-import firebase from '../firebase';
-import { getFirestore, updateDoc ,doc } from 'firebase/firestore';
-
+import { TodoContext } from "../context";
+import moment from "moment";
+import firebase from "../firebase";
+import { getFirestore, updateDoc, doc } from "firebase/firestore";
 
 function EditTodo(): JSX.Element {
+  console.log('hi')
   // STATE
-  const [text, setText] = useState<string>('');
-  const [day, setDay] = useState<Date>(new Date());
-  const [time, setTime] = useState<Date>(new Date());
+  const [text, setText] = useState<string>(() => {
+    return "";
+  });
+  
+  const [day, setDay] = useState<Date>(() => new Date());
+  const [time, setTime] = useState<Date>(() => new Date());
 
   // CONTEXT
   const contextValue = useContext(TodoContext);
   const selectedTodo = contextValue?.selectedTodo;
 
-  //EDIT TEXT DAY AND TIME 
-  useEffect(() => {
+
+  // EDIT TEXT DAY AND TIME
+ useEffect(() => {
+  
+    // efekt uruchamiany gdy selectedtodo sie zmienia. Przyjmuje wartość selectedtodo z kontekstu i aktualizuje lokalny stan komponentu
     if (selectedTodo) {
       setText(selectedTodo.text);
-      setDay(moment(selectedTodo.date, 'DD/MM/YYYY').toDate());
-      setTime(moment(selectedTodo.time, 'HH:mm').toDate());
+      setDay(moment(selectedTodo.date).toDate());
+      setTime(moment(selectedTodo.time).toDate());
     }
   }, [selectedTodo]);
 
-  //UPDATE THE DATA WHEN EDITING TODO
+  // UPDATE THE DATA WHEN EDITING TODO
   const handleEditSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (selectedTodo) {
       
       const db = getFirestore(firebase);
@@ -37,24 +44,32 @@ function EditTodo(): JSX.Element {
 
       updateDoc(todoRef, {
         text,
-        date: moment(day).format("DD/MM/YYYY"),
+        date: moment(day).valueOf(),
         day: moment(day).format("d"),
-        time: moment(time).format("HH:mm"),
+        time: moment(time).valueOf(),
       });
     }
   };
 
-    const handleCloseEdit = () => {
+  const handleCloseEdit = () => {
+    
+    // Funkcja zamykająca EditTodo bez zmiany danych
+    // W tym przypadku możesz dodać ewentualne dodatkowe czynności przed zamknięciem
+    // Na razie nie robimy żadnych zmian, ale możesz dostosować to do swoich potrzeb
     setText("");
     setDay(new Date());
     setTime(new Date());
+    // Dodatkowe czynności (jeśli są potrzebne) przed zamknięciem EditTodo
+    // ...
+    // Zamykanie EditTodo
+    // W tym przypadku przekładasz wartość false do selectedTodo w kontekście, aby zamknąć EditTodo
     contextValue?.setSelectedTodo(null);
   };
 
-
- return ( 
+  // renderuje komponent edittodo gdy istnieje selectedTodo i wyświetla formularz edycji
+  return  ( 
     <div>
-      {selectedTodo && (
+      {selectedTodo && ( 
         <div className="EditTodo">
           <div className="header">
             <img
@@ -114,7 +129,7 @@ function EditTodo(): JSX.Element {
                   </div>
                   <TimePicker
                     value={moment(time)}
-                    onChange={(newTime) => newTime && setTime(newTime.toDate())}
+                    onChange={(newTime) => newTime && setTime(moment(newTime).toDate())}
                   />
                 </div>
                 <div className="buttons">
