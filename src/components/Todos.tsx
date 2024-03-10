@@ -35,7 +35,7 @@ const Todos: FC = () => {
         ) : (
           todos.map((todo: TodoItem) =>
             selectedDay === 'today' &&
-            moment(todo.date, 'DD/MM/YYYY').isSame(moment(), 'day') ? (
+            moment(todo.date).isSame(moment(), 'day') ? (
               <Todo todo={todo} key={todo.id} />
             ) : null
           )
