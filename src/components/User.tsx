@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../images/logo.png';
+import Logout from '../pages/Logout';
 
 function User(){
 //Logout imitation*
@@ -10,7 +11,7 @@ function User(){
             </div>
             <div className="info">
                 <p>Your to-do list!</p>
-                <a href="#">Logout</a> 
+                <Logout />
             </div>
         </div>
     )
