@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import firebase from '../firebase';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import moment from 'moment';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -19,6 +20,9 @@ const AddNewTodo: React.FC<AddNewTodoProps> = () => {
     time: new Date(),
   });
 
+  const auth = getAuth();
+  const user = auth.currentUser; //userid
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -27,6 +31,7 @@ const AddNewTodo: React.FC<AddNewTodoProps> = () => {
 
       try {
         const docRef = await addDoc(db, {
+          userId: user?.uid,
           text: formState.text,
           date: moment(formState.day).valueOf(),
           day: moment(formState.day).format('d'),
