@@ -24,7 +24,7 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
       );
     } else if (viewType === "previous") {
       return todoDate.isBetween(
-        moment().subtract(8, "days").startOf("day"),
+        moment().subtract(7, "days").startOf("day"),
         moment().subtract(1, "day").endOf("day"),
         undefined,
         "(]"
@@ -53,13 +53,16 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
   let arrangeDays = sortedTodosByDay;
 
   if (viewType === 'next') {
-    arrangeDays = arrangeDays.slice(days.indexOf(today) + 1).concat(arrangeDays.slice(0, days.indexOf(today) + 1));
+    const todayIndex = days.indexOf(today);
+    arrangeDays = [...arrangeDays.slice(todayIndex + 1), ...arrangeDays.slice(0, todayIndex + 1)];
   } else if (viewType === 'previous') {
-    // Posortuj zadania w ramach każdego dnia od najnowszego do najstarszego
-    arrangeDays.forEach(day => {
-      day.todos.sort((a, b) => moment(b.date, 'DD/MM/YYYY').diff(moment(a.date, 'DD/MM/YYYY')));
-    });
+    const todayIndex = days.indexOf(today);
+    arrangeDays = [...arrangeDays.slice(todayIndex), ...arrangeDays.slice(0, todayIndex)];
   }
+
+  arrangeDays.forEach(day => {
+    day.todos.sort((a, b) => moment(b.date, 'DD/MM/YYYY').diff(moment(a.date, 'DD/MM/YYYY')));
+  });
 
   return (
     <div className={viewType === 'next' ? 'Next7Days' : 'Previous7Days'}>
