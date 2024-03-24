@@ -10,6 +10,7 @@ import Calendar from './components/Calendar';
 import Todos from './components/Todos';
 import EditTodo from './components/EditTodo';
 import LoginPage from './pages/Login';
+import { TodoContextProvider } from './context'; 
 
 import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
@@ -42,26 +43,28 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={user ? <AppContent /> : <Navigate to="/login" />} /> 
+          <Route path="/" element={user ? <AppContent user={user}/> : <Navigate to="/login" />} /> 
         </Routes>
       </div>
     </Router>
   );
 }
 
-function AppContent() {
+function AppContent({ user }: { user: FirebaseUser | null }) {
   return (
-    <div className="app">
-      <Sidebar>
-        <User />
-        <AddNewTodo />
-        <Calendar />
-      </Sidebar>
-      <Main>
-        <Todos />
-        <EditTodo />
-      </Main>
-    </div>
+    <TodoContextProvider>
+      <div className="app">
+        <Sidebar>
+          <User />
+          <AddNewTodo />
+          <Calendar />
+        </Sidebar>
+        <Main>
+          <Todos />
+          <EditTodo />
+        </Main>
+      </div>
+    </TodoContextProvider>
   );
 }
 
