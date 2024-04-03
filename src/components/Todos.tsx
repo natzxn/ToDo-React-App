@@ -5,7 +5,7 @@ import { TodoContext, TodoContextProps } from '../context';
 import moment from 'moment';
 
 
-interface TodoItem {
+export interface TodoItem {
     id: string;
     text: string;
     time: number;
