@@ -32,7 +32,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
   const handleDelete = async (todo: TodoProps['todo']) => {
   await deleteTodo(todo)
     if(selectedTodo === todo){
-      setSelectedTodo(undefined)
+      setSelectedTodo(null)
     }
   }
 
