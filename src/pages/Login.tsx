@@ -23,10 +23,12 @@ const LoginPage = () => {
 
   return (
     <div className='LoginPage'>
-      {/* Display the login button only if the user is not logged in */}
+      <div className='box'>
+      {/* Wyświetl przycisk logowania tylko jeśli użytkownik nie jest zalogowany */}
       {!loggedIn && (
-        <button className='login' onClick={handleLogin}>Login with Google</button>
+        <button className='login' onClick={handleLogin}><img src='https://cdn.iconscout.com/icon/free/png-256/free-google-152-189813.png' width="30"></img> Login with Google</button>
       )}
+      </div>
     </div>
   );
 }
