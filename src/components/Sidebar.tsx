@@ -18,7 +18,7 @@ const Sidebar = ({ children }: SidebarProps): ReactElement => {
     //HANDLE CLICK
     const handleClick = (e: MouseEvent) => {
       if (e.target === sidebarRef.current || sidebarRef.current?.contains(e.target as Node)) {
-        contextValue.setSelectedTodo(undefined);
+        contextValue.setSelectedTodo(null);
       }
     };
 
