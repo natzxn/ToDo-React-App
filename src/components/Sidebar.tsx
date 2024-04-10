@@ -12,7 +12,7 @@ const Sidebar = ({ children }: SidebarProps): ReactElement => {
 
   useEffect(() => {
     if (!contextValue) {
-      return; // TERMINATE EFFECT IF contextVale doesn't exist
+      return; 
     }
 
     //HANDLE CLICK
