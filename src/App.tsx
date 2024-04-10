@@ -53,7 +53,7 @@ function App() {
 function AppContent({ user }: { user: FirebaseUser | null }) {
   return (
     <TodoContextProvider>
-      <div className="app">
+      <div className="app-content">
         <Sidebar>
           <User />
           <AddNewTodo />
