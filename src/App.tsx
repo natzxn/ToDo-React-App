@@ -19,22 +19,18 @@ import { firebaseConfig } from './firebase/index';
 initializeApp(firebaseConfig);
 
 function App() {
-  const [user, setUser] = useState<FirebaseUser | null>(null); //Use union types for setUser
+  const [user, setUser] = useState<FirebaseUser | null>(null); 
   useEffect(() => {
-    const auth = getAuth(); // Download the Firebase authentication object
+    const auth = getAuth(); 
 
-    // Check the user's authentication status
     const unsubscribe = onAuthStateChanged(auth, (loggedInUser) => {
       if (loggedInUser) {
-        // User is logged in
-        setUser(loggedInUser); // Set the user as the current user
+        setUser(loggedInUser); 
       } else {
-        //User is not logged in set user to null
         setUser(null); 
       }
     });
 
-    // Pamiętaj o wyrejestrowaniu subskrypcji w celu zapobieżenia wyciekom pamięci
     return () => unsubscribe();
   }, []);
 
