@@ -10,9 +10,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import 'moment/locale/en-gb';
 
-interface AddNewTodoProps {}
-
-const AddNewTodo: React.FC<AddNewTodoProps> = () => {
+const AddNewTodo: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(() => false);
   const [formState, setFormState] = useState({
     text: '',
