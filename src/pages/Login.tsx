@@ -11,7 +11,7 @@ const LoginPage = () => {
     try {
       // Login with Google Account
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
       setLoggedIn(true);
 
       // After successful login, redirect the user to the home page
