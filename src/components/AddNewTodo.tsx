@@ -21,7 +21,7 @@ const AddNewTodo: React.FC<AddNewTodoProps> = () => {
   });
 
   const auth = getAuth();
-  const user = auth.currentUser; //userid
+  const user = auth.currentUser; 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
