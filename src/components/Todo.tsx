@@ -1,5 +1,4 @@
 import React, { FC, useContext, useState } from 'react';
-import { CheckCircleFill, Circle, Trash, ExclamationCircleFill } from 'react-bootstrap-icons';
 import { getFirestore, deleteDoc, updateDoc ,doc } from 'firebase/firestore'
 import firebase from '../firebase'
 import moment from 'moment';
@@ -77,14 +76,14 @@ const Todo: FC<TodoProps> = ({ todo }) => {
         <div className="check-todo" onClick={() => checkTodo(todo)}>
           {todo.checked ? (
             <span className='checked'>
-              <CheckCircleFill color='#bebebe' />
+              <img width="16" height="16" src="https://img.icons8.com/office/16/ok--v1.png" alt="ok--v1"/>
             </span>
           ) : (
             <span className="unchecked">
               {isTaskDue ? (
-                <ExclamationCircleFill color='red' />
+                <img width="16" height="16" src="https://img.icons8.com/ios-filled/16/FA5252/cancel.png" alt="x"/>
               ) : (
-                <Circle color={todo.color} />
+                <img width="16" height="16" src="https://img.icons8.com/ios-filled/16/circled.png" alt="circled"/>
               )}
             </span>
           )}
@@ -102,7 +101,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
         <div className="delete-todo"
               onClick={() => handleDelete(todo)}
         >
-          {(hover || todo.checked) && <span><Trash /></span>}
+          {(hover || todo.checked) && <span><img width="17" height="17" src="https://img.icons8.com/parakeet-line/17/trash.png" alt="trash"/></span>}
         </div>
       </div>
     </animated.div>
