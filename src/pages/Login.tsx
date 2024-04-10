@@ -4,8 +4,8 @@ import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
-  const [loggedIn, setLoggedIn] = React.useState(false); // State that stores information about the user's login
+  const navigate = useNavigate(); 
+  const [loggedIn, setLoggedIn] = React.useState(false); 
 
   const handleLogin = async () => {
     try {
@@ -24,7 +24,6 @@ const LoginPage = () => {
   return (
     <div className='LoginPage'>
       <div className='box'>
-      {/* Wyświetl przycisk logowania tylko jeśli użytkownik nie jest zalogowany */}
       {!loggedIn && (
         <button className='login' onClick={handleLogin}><img src='https://cdn.iconscout.com/icon/free/png-256/free-google-152-189813.png' width="30"></img> Login with Google</button>
       )}
