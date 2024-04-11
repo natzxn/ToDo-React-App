@@ -1,0 +1,40 @@
+.EditTodo {
+    position: absolute;
+    bottom: 40px;
+    left: calc(40px + 450px + 40px);
+    background-color: #FFF;
+    height: 80%;
+    width: 450px;
+    border-radius: 15px;
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 1230px) {
+    .EditTodo {
+        width: 350px;
+        left: calc(40px + 350px + 20px);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .EditTodo {
+        width: 350px;
+        height: 40%;
+        bottom: calc(53% - 45%);
+        left: 40px;
+    }
+}
+
+.EditTodo .header {
+    margin: 1rem 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+}
+
+.EditTodo .header img {
+    margin-right: 7px;
+}

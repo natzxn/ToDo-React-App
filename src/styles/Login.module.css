@@ -1,0 +1,50 @@
+.LoginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100%;
+    background-image: url(../images/16_afcas12.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+.LoginPage .box {
+    background: rgba(255, 255, 255, 0.247);
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn button {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: #45af98;
+    color: #FFF;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.btn button img {
+    margin: 0.3rem;
+}
+
+
+ .btn button:hover {
+    filter: brightness(1.1);
+    transition: all .2s ease;
+}
