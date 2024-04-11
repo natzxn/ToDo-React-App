@@ -1,0 +1,18 @@
+.User {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.8rem;
+    border: 1px solid #ebebeb;
+}
+
+.User .info p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.User .info a {
+    text-decoration: underline;
+    color: #3ead95;
+    font-size: 0.9rem;
+}
