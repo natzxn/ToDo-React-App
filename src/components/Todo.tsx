@@ -5,6 +5,7 @@ import moment from 'moment';
 import { TodoContext, TodoContextProps } from '../context';
 import { animated, useSpring } from '@react-spring/web';
 import { TodoItem } from './Todos';
+import styles from '../styles/Todo.module.css';
 
 interface TodoProps {
   todo: TodoItem;
@@ -67,9 +68,9 @@ const Todo: FC<TodoProps> = ({ todo }) => {
   const isTaskDue = !todo.checked && todoDate.isBefore(todayDate) && !todayDate.isSame(todoDate, 'day');  //CHECK IF TASK HAS BEEN DONE OR NOT
 
   return (
-    <animated.div style={fadeIn} className={`Todo ${isTaskDue ? 'overdue' : ''}`}>
+    <animated.div style={fadeIn} className={`${styles.Todo} ${isTaskDue ? 'overdue' : ''}`}>
       <div
-        className="todo-container"
+        className={styles.container}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
@@ -88,7 +89,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
             </span>
           )}
         </div>
-        <div className="text"
+        <div className={styles.text}
             onClick={() => setSelectedTodo(todo)}
             >
           <p style={{ color: todo.checked ? '#bebebe' : '#000000' }}>{todo.text}</p>
@@ -96,7 +97,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
             {moment(todo.date).format('DD/MM/YYYY')} - {moment(todo.time).format('HH:mm')}
           </span>
 
-          <div className={`line ${todo.checked ? 'line-through' : ''}`}></div>
+          <div className={`${styles.line} ${todo.checked ? styles["line-through"] : ""}`}></div>
         </div>
         <div className="delete-todo"
               onClick={() => handleDelete(todo)}
