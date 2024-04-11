@@ -65,17 +65,17 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
   });
 
   return (
-    <div className={viewType === 'next' ? 'Next7Days' : 'Previous7Days'}>
+    <div className={viewType === styles['next'] ? styles['Next7Days'] : styles['Previous7Days']}>
     {arrangeDays.map(day => (
       <div key={day.number}>
-        <div className="day">
-          <div className="name">
+        <div className={styles.day}>
+          <div className={styles.name}>
             {moment().day(day.number).format('dddd')}
-            {day.number === today && viewType === 'next' && day.todos.length > 0 }
+            {day.number === today && viewType === styles['next'] && day.todos.length > 0 }
           </div>
-          <div className="total-todos">( {day.todos.length} )</div>
+          <div className={styles.total}>( {day.todos.length} )</div>
         </div>
-        <div className="todos">
+        <div className={styles.todos}>
           {day.todos.map(todo => (
             <Todo key={todo.id} todo={todo} />
           ))}
