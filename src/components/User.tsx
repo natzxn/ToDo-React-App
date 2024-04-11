@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../images/logo.png';
-import Logout from '../pages/Logout';
+import Logout from './Logout';
 
 function User(){
 //Logout imitation*
