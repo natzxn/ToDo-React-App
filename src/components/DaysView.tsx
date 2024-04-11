@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import moment from 'moment';
 import Todo from './Todo';
 import { TodoItem } from './Todos';
+import styles from '../styles/DaysView.module.css'
 
 interface DaysViewProps {
   todos: TodoItem[];
