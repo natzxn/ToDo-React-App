@@ -3,6 +3,7 @@ import Todo from './Todo';
 import DaysView from './DaysView';
 import { TodoContext, TodoContextProps } from '../context';
 import moment from 'moment';
+import styles from '../styles/Todos.module.css'
 
 
 export interface TodoItem {
@@ -34,9 +35,9 @@ const Todos: FC = () => {
     
 
   return (
-    <div className="Todos">
-      <div className="selected-task">{selectedDay}</div>
-      <div className="todos">
+    <div className={styles.Todos}>
+      <div className={styles.selectedtask}>{selectedDay}</div>
+      <div className={styles.todos}>
         {selectedDay === 'next 7 days' || selectedDay === 'previous 7 days' ? (
           <DaysView todos={filteredTodos} viewType={selectedDay === 'next 7 days' ? 'next' : 'previous'} />
         ) : selectedDay === 'all days' ? (
