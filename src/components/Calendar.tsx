@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { TodoContext } from '../context';
 import { animated, useSpring } from '@react-spring/web';
+import styles from '../styles/Calendar.module.css'
 
  const calendarItems = ['today', 'previous 7 days', 'next 7 days', 'all days']
 
@@ -28,26 +29,26 @@ import { animated, useSpring } from '@react-spring/web';
     
 
     return (
-        <div className='Calendar'>
-            <div className="header">
-                <div className="title">
+        <div className={styles.Calendar}>
+            <div className={styles.header}>
+                <div className={styles.title}>
                     <img width="36" height="36" src="https://img.icons8.com/pulsar-color/36/calendar-plus.png" alt="calendar-plus"/>
                     <p>Calendar</p>
                 </div>
                 <animated.div 
                 style={spin} 
                 onClick={() => setShowMenu(!showMenu)}
-                className="btns">
+                className={styles.btns}>
                     <span>
                         <img width="20" height="20" src="https://img.icons8.com/material-outlined/20/circled-chevron-up.png" alt="circled-chevron-up"/>
                     </span>
                 </animated.div>
             </div>
-          <animated.div style={menuAnimation} className="items">
+          <animated.div style={menuAnimation} className={styles.items}>
             <ul>
               {calendarItems.map((item) => (
                 <li
-                  className="item"
+                  className={styles.item}
                   key={item}
                   onClick={() => setselectedDay(item)}
                 >
