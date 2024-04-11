@@ -6,8 +6,11 @@ import { TodoContext } from "../context";
 import moment from "moment";
 import firebase from "../firebase";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import styles from '../styles/EditTodo.module.css'
+import todoform from '../styles/NewTodo.module.css'
 
 function EditTodo(): JSX.Element {
+  console.log('hi')
   // STATE
   const [text, setText] = useState<string>(() => {
     return "";
@@ -23,7 +26,7 @@ function EditTodo(): JSX.Element {
 
   // EDIT TEXT DAY AND TIME
  useEffect(() => {
-  
+    // efekt uruchamiany gdy selectedtodo sie zmienia. Przyjmuje wartość selectedtodo z kontekstu i aktualizuje lokalny stan komponentu
     if (selectedTodo) {
       setText(selectedTodo.text);
       setDay(moment(selectedTodo.date).toDate());
@@ -33,6 +36,7 @@ function EditTodo(): JSX.Element {
 
   // UPDATE THE DATA WHEN EDITING TODO
   const handleEditSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
     
     if (selectedTodo) {
@@ -50,17 +54,24 @@ function EditTodo(): JSX.Element {
   };
 
   const handleCloseEdit = () => {
+   
+    // Funkcja zamykająca EditTodo bez zmiany danych
+    // W tym przypadku możesz dodać ewentualne dodatkowe czynności przed zamknięciem
     setText("");
     setDay(new Date());
     setTime(new Date());
+
+    // Zamykanie EditTodo
+    // W tym przypadku przekładasz wartość false do selectedTodo w kontekście, aby zamknąć EditTodo
     contextValue?.setSelectedTodo(null);
   };
 
+  // renderuje komponent edittodo gdy istnieje selectedTodo i wyświetla formularz edycji
   return  ( 
     <div>
       {selectedTodo && ( 
-        <div className="EditTodo">
-          <div className="header">
+        <div className={styles.EditTodo}>
+          <div className={styles.header}>
             <img
               width="25"
               height="25"
@@ -74,8 +85,8 @@ function EditTodo(): JSX.Element {
               dateAdapter={AdapterMoment}
               adapterLocale="en-gb"
             >
-              <form onSubmit={handleEditSubmit} className="TodoForm">
-                <div className="text">
+              <form onSubmit={handleEditSubmit} className={todoform.TodoForm}>
+                <div className={todoform.text}>
                   <input
                     type="text"
                     value={text}
@@ -91,8 +102,8 @@ function EditTodo(): JSX.Element {
                     required
                   />
                 </div>
-                <div className="pick-day">
-                  <div className="title">
+                <div className={todoform.pickday}>
+                  <div className={todoform.title}>
                     <img
                       width="35"
                       height="35"
@@ -106,8 +117,8 @@ function EditTodo(): JSX.Element {
                     onChange={(newDay) => newDay && setDay(newDay.toDate())}
                   />
                 </div>
-                <div className="pick-time">
-                  <div className="title">
+                <div className={todoform.picktime}>
+                  <div className={todoform.title}>
                     <img
                       width="35"
                       height="35"
@@ -121,11 +132,11 @@ function EditTodo(): JSX.Element {
                     onChange={(newTime) => newTime && setTime(moment(newTime).toDate())}
                   />
                 </div>
-                <div className="buttons">
-                <div className="confirm">
-                  <button type="submit">Confirm</button>
+                <div className={todoform.buttons}>
+                <div className={todoform.confirm}>
+                  <button type={todoform.submit}>Confirm</button>
                 </div>
-                <div className="cancel" onClick={handleCloseEdit}>
+                <div className={todoform.cancel} onClick={handleCloseEdit}>
                 <img
                   width="22"
                   height="22"
