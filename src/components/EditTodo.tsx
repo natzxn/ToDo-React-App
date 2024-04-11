@@ -10,7 +10,6 @@ import styles from '../styles/EditTodo.module.css'
 import todoform from '../styles/NewTodo.module.css'
 
 function EditTodo(): JSX.Element {
-  console.log('hi')
   // STATE
   const [text, setText] = useState<string>(() => {
     return "";
@@ -26,7 +25,6 @@ function EditTodo(): JSX.Element {
 
   // EDIT TEXT DAY AND TIME
  useEffect(() => {
-    // efekt uruchamiany gdy selectedtodo sie zmienia. Przyjmuje wartość selectedtodo z kontekstu i aktualizuje lokalny stan komponentu
     if (selectedTodo) {
       setText(selectedTodo.text);
       setDay(moment(selectedTodo.date).toDate());
@@ -54,19 +52,14 @@ function EditTodo(): JSX.Element {
   };
 
   const handleCloseEdit = () => {
-   
-    // Funkcja zamykająca EditTodo bez zmiany danych
-    // W tym przypadku możesz dodać ewentualne dodatkowe czynności przed zamknięciem
+  
     setText("");
     setDay(new Date());
     setTime(new Date());
 
-    // Zamykanie EditTodo
-    // W tym przypadku przekładasz wartość false do selectedTodo w kontekście, aby zamknąć EditTodo
     contextValue?.setSelectedTodo(null);
   };
 
-  // renderuje komponent edittodo gdy istnieje selectedTodo i wyświetla formularz edycji
   return  ( 
     <div>
       {selectedTodo && ( 
