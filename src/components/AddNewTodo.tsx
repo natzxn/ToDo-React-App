@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import 'moment/locale/en-gb';
+import styles from '../styles/NewTodo.module.css'
 
 const AddNewTodo: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(() => false);
@@ -53,8 +54,8 @@ const AddNewTodo: React.FC = () => {
   }
 
   return (
-    <div className="AddNewTodo">
-      <div className="btn">
+    <div className={styles.AddNewTodo}>
+      <div className={styles.btn}>
         <button onClick={() => setShowModal(true)}>
           <img
             width="19"
@@ -66,10 +67,10 @@ const AddNewTodo: React.FC = () => {
         </button>
       </div>
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <div className="TodoForm">
+        <div className={styles.TodoForm}>
           <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="en-gb">
             <form onSubmit={handleSubmit}>
-              <div className="text">
+              <div className={styles.text}>
                 <input
                   type="text"
                   value={formState.text}
@@ -85,8 +86,8 @@ const AddNewTodo: React.FC = () => {
                   required
                 />
               </div>
-              <div className="pick-day">
-                <div className="title">
+              <div className={styles.pickday}>
+                <div className={styles.title}>
                   <img
                     width="35"
                     height="35"
@@ -100,8 +101,8 @@ const AddNewTodo: React.FC = () => {
                   onChange={(newDay) => newDay && setFormState((prev) => ({ ...prev, day: newDay.toDate() }))}
                 />
               </div>
-              <div className="pick-time">
-                <div className="title">
+              <div className={styles.picktime}>
+                <div className={styles.title}>
                   <img
                     width="35"
                     height="35"
@@ -115,8 +116,8 @@ const AddNewTodo: React.FC = () => {
                   onChange={(newTime) => newTime && setFormState((prev) => ({ ...prev, time: newTime.toDate() }))}
                 />
               </div>
-              <div className="buttons">
-                <div className="cancel" onClick={() => setShowModal(false)}>
+              <div className={styles.buttons}>
+                <div className={styles.cancel} onClick={() => setShowModal(false)}>
                   <img
                     width="22"
                     height="22"
@@ -124,8 +125,8 @@ const AddNewTodo: React.FC = () => {
                     alt="multiply"
                   />
                 </div>
-                <div className="confirm">
-                  <button type="submit">
+                <div className={styles.confirm}>
+                  <button type={styles.submit}>
                     <img
                       width="19"
                       height="19"
