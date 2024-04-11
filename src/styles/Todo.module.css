@@ -1,0 +1,40 @@
+.Todo {
+    padding: 0.5rem 1rem;
+}
+
+.Todo .container {
+    display: flex;
+    align-items: center;
+}
+
+.Todo .container span {
+    cursor: pointer;
+}
+
+.Todo .container .text {
+    position: relative;
+    flex: 1;
+    margin: 0 0 0 8px;
+    cursor: pointer;
+    font-size: 1.15rem;
+    max-width: 440px;
+}
+
+.Todo .container .text span {
+    font-size: 1rem;
+    color: #bebebe;
+}
+
+
+.Todo .container .text .line {
+    height: 1px;
+    background: #bebebe;
+    position: absolute;
+    top: 25%;
+    width: 0;
+    transition: width 250ms ease-in-out;
+}
+
+.Todo .container .text .line-through {
+    width: 100%;
+}
