@@ -22,12 +22,11 @@ function EditTodo(): JSX.Element {
 
   // EDIT TEXT DAY AND TIME
   useEffect(() => {
-    if (selectedTodo) {
-      setText(selectedTodo.text);
-      setDay(moment(selectedTodo.date).toDate());
-      setTime(moment(selectedTodo.time).toDate());
-    }
+    setText(selectedTodo?.text ?? "");
+    setDay(moment(selectedTodo?.date).toDate() ?? new Date());
+    setTime(moment(selectedTodo?.time).toDate() ?? new Date());
   }, [selectedTodo]);
+  
 
 
   // UPDATE THE DATA WHEN EDITING TODO
@@ -50,12 +49,10 @@ function EditTodo(): JSX.Element {
     contextValue?.setSelectedTodo(null);
   };
 
-  //CONDITIONAL RENDERING
-  if (!selectedTodo) {
-    return <></>; 
-  }
 
   return (
+    <>
+    {selectedTodo ? (
     <div className={styles.EditTodo}>
       <div className={styles.header}>
         <img
@@ -134,6 +131,8 @@ function EditTodo(): JSX.Element {
         </LocalizationProvider>
       </div>
     </div>
+    ) : null}
+    </>
   );
 }
 
