@@ -6,14 +6,12 @@ import styles from '../styles/Login.module.css'
 
 const LoginPage = () => {
   const navigate = useNavigate(); 
-  const [loggedIn, setLoggedIn] = React.useState(false); 
 
   const handleLogin = async () => {
     try {
       // Login with Google Account
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      setLoggedIn(true);
 
       // After successful login, redirect the user to the home page
       navigate('/');
@@ -26,11 +24,15 @@ const LoginPage = () => {
     <div className={styles.LoginPage}>
       <div className={styles.box}>
         <div className={styles.btn}>
-        <button className={styles.login} onClick={handleLogin}><img src='https://cdn.iconscout.com/icon/free/png-256/free-google-152-189813.png' width="30" alt="login"></img> Login with Google</button>
+          <button className={styles.login} onClick={handleLogin}>
+            <img src='https://cdn.iconscout.com/icon/free/png-256/free-google-152-189813.png' width="30" alt="login"></img> 
+            Login with Google
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default LoginPage;
