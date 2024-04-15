@@ -26,6 +26,11 @@ const AddNewTodo: React.FC = () => {
     e.preventDefault();
 
     if (formState.text) {
+      if (!moment(formState.day).isValid() || !moment(formState.time).isValid()) {
+        console.error('Invalid date or time');
+        return;
+      }
+
       const db = collection(getFirestore(firebase), 'todos');
 
       try {
@@ -68,7 +73,10 @@ const AddNewTodo: React.FC = () => {
       </div>
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <div className={styles.TodoForm}>
-          <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="en-gb">
+          <LocalizationProvider
+            dateAdapter={AdapterMoment}
+            adapterLocale="en-gb"
+          >
             <form onSubmit={handleSubmit}>
               <div className={styles.text}>
                 <input
@@ -98,8 +106,14 @@ const AddNewTodo: React.FC = () => {
                 </div>
                 <DatePicker
                   value={moment(formState.day)}
-                  onChange={(newDay) => newDay && setFormState((prev) => ({ ...prev, day: newDay.toDate() }))}
+                  onChange={(newDay) =>
+                    newDay &&
+                    setFormState((prev) => ({ ...prev, day: newDay.toDate() }))
+                  }
                 />
+                {!moment(formState.day).isValid() && (
+                  <div className={styles.error}>Invalid date</div>
+                )}
               </div>
               <div className={styles.picktime}>
                 <div className={styles.title}>
@@ -113,11 +127,23 @@ const AddNewTodo: React.FC = () => {
                 </div>
                 <TimePicker
                   value={moment(formState.time)}
-                  onChange={(newTime) => newTime && setFormState((prev) => ({ ...prev, time: newTime.toDate() }))}
+                  onChange={(newTime) =>
+                    newTime &&
+                    setFormState((prev) => ({
+                      ...prev,
+                      time: newTime.toDate(),
+                    }))
+                  }
                 />
+                {!moment(formState.time).isValid() && (
+                  <div className={styles.error}>Invalid time</div>
+                )}
               </div>
               <div className={styles.buttons}>
-                <div className={styles.cancel} onClick={() => setShowModal(false)}>
+                <div
+                  className={styles.cancel}
+                  onClick={() => setShowModal(false)}
+                >
                   <img
                     width="22"
                     height="22"
@@ -132,7 +158,7 @@ const AddNewTodo: React.FC = () => {
                       height="19"
                       src="https://img.icons8.com/ios-glyphs/19/FFFFFF/plus-math.png"
                       alt="plus-math"
-                    />{' '}
+                    />{" "}
                     Add task
                   </button>
                 </div>
