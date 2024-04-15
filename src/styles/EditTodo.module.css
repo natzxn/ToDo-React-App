@@ -38,3 +38,22 @@
 .EditTodo .header img {
     margin-right: 7px;
 }
+
+.TodoForm .pickday {
+    padding: 1.1rem 1.5rem 0 1.5rem;
+    position: relative;
+}
+
+.TodoForm .picktime {
+    padding: 1.1rem 1.5rem 0 1.5rem;
+    position: relative;
+}
+
+ .error {
+    position: absolute;
+    margin-top: 5px;
+    top: 100%;
+    left: 25px;
+    color: red;
+    font-size: 13px;
+}
