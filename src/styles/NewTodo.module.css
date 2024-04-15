@@ -38,8 +38,9 @@
 /* ====================== ADD NEW TODO FORM ====================== */
 
 .TodoForm {
-    padding: 1rem 1rem calc(1rem + 45px) 1rem;
+    padding: 1rem 1rem calc(1rem + 70px) 1rem;
     width: 450px;
+    
 }
 
 .TodoForm .text input {
@@ -78,10 +79,12 @@
 
 .TodoForm .pickday {
     padding: 1.1rem 1.5rem 0 1.5rem;
+    position: relative;
 }
 
 .TodoForm .picktime {
-    padding: 1.5rem;
+    padding: 1.7rem 1.5rem 0 1.5rem;
+    position: relative;
 }
 
 .TodoForm .cancel {
@@ -123,4 +126,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+}
+
+.TodoForm .error {
+    position: absolute;
+    margin-top: 5px;
+    top: 100%;
+    left: 25px;
+    color: red;
+    font-size: 13px;
 }
