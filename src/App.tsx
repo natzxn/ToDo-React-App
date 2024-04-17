@@ -20,16 +20,24 @@ initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState<FirebaseUser | null>(null); 
+
   useEffect(() => {
     const auth = getAuth(); 
 
     const unsubscribe = onAuthStateChanged(auth, (loggedInUser) => {
       if (loggedInUser) {
-        setUser(loggedInUser); 
+        setUser(loggedInUser);
+        localStorage.setItem('user', JSON.stringify(loggedInUser));
       } else {
         setUser(null); 
+        localStorage.removeItem('user');
       }
     });
+
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
 
     return () => unsubscribe();
   }, []);
@@ -38,15 +46,15 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={user ? <AppContent user={user}/> : <Navigate to="/login" />} /> 
+          <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
+          <Route path="/" element={user ? <AppContent user={user} /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
   );
 }
 
-function AppContent({ user }: { user: FirebaseUser | null }) {
+function AppContent({ user }: { user: FirebaseUser }) {
   return (
     <TodoContextProvider>
       <div className="app-content">
