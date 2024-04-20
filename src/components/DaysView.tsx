@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import moment from 'moment';
 import Todo from './Todo';
 import { TodoItem } from './Todos';
-import styles from '../styles/DaysView.module.css'
+import styles from '../styles/DaysView.module.css';
 
 interface DaysViewProps {
   todos: TodoItem[];
-  viewType: 'next' | 'previous' | 'all' | 'today';
+  viewType: 'next' | 'previous';
 }
 
 const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
@@ -29,16 +29,6 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
         moment().subtract(1, "day").endOf("day"),
         undefined,
         "(]"
-      );
-    } else if (viewType === "all") {
-      return true;
-    } else if (viewType === "today") {
-      const todayStart = moment().startOf("day");
-      return todoDate.isBetween(
-        todayStart,
-        todayStart.add(1, "day").startOf("day"),
-        undefined,
-        "[)"
       );
     }
     return false;
@@ -66,20 +56,19 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
   });
 
   return (
-    <div className={viewType === styles['next'] ? styles['Next7Days'] : styles['Previous7Days']}>
-    {arrangeDays.map(day => (
-      <div key={day.number}>
-        <div className={styles.day}>
-          <div className={styles.name}>
-            {moment().day(day.number).format('dddd')}
-            {day.number === today && viewType === styles['next'] && day.todos.length > 0 }
+    <div className={viewType === 'next' ? styles.Next7Days : styles.Previous7Days}>
+      {arrangeDays.map(day => (
+        <div key={day.number}>
+          <div className={styles.day}>
+            <div className={styles.name}>
+              {moment().day(day.number).format('dddd')}
+            </div>
+            <div className={styles.total}>( {day.todos.length} )</div>
           </div>
-          <div className={styles.total}>( {day.todos.length} )</div>
-        </div>
-        <div className={styles.todos}>
-          {day.todos.map(todo => (
-            <Todo key={todo.id} todo={todo} />
-          ))}
+          <div className={styles.todos}>
+            {day.todos.map(todo => (
+              <Todo key={todo.id} todo={todo} />
+            ))}
           </div>
         </div>
       ))}
