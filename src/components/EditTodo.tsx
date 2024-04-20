@@ -1,50 +1,54 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
-import { TodoContext } from "../context";
 import moment from "moment";
 import firebase from "../firebase";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import { TodoContext } from "../context";
 import styles from '../styles/EditTodo.module.css'
 import todoform from '../styles/NewTodo.module.css'
 
 function EditTodo(): JSX.Element {
-  // STATE
+  //STATE
   const [text, setText] = useState<string>("");
   const [day, setDay] = useState<Date>(new Date());
   const [time, setTime] = useState<Date>(new Date());
+  const [showDeletedMessage, setShowDeletedMessage] = useState<boolean>(false);
 
-  // CONTEXT
+  //CONTEXT
   const contextValue = useContext(TodoContext);
   const selectedTodo = contextValue?.selectedTodo;
 
-
-  // EDIT TEXT DAY AND TIME
+  //EDIT TEXT DAY AND TIME
   useEffect(() => {
     setText(selectedTodo?.text ?? "");
     setDay(moment(selectedTodo?.date).toDate() ?? new Date()); 
     setTime(moment(selectedTodo?.time).toDate() ?? new Date());
   }, [selectedTodo]);
-  
 
-
-  // UPDATE THE DATA WHEN EDITING TODO
+  //UPDATE THE DATA WHEN EDITING TODO
   const handleEditSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!moment(day).isValid() || !moment(time).isValid()) {
+    if (!selectedTodo || !moment(day).isValid() || !moment(time).isValid()) {
       console.error('Invalid date or time');
-      return;
+      return; //CATCH UNVALID DATE/TIME FROM DATE/TIME PICKERS
     }
     
     const db = getFirestore(firebase);
-    const todoRef = doc(db, "todos", selectedTodo!.id);
+    const todoRef = doc(db, "todos", selectedTodo.id);
     updateDoc(todoRef, {
       text,
       date: moment(day).valueOf(),
       day: moment(day).format("d"),
       time: moment(time).valueOf(),
+    }).catch((error) => { //SHOW ERROR WHEN TRYING TO UPDATE DELETED TODO
+      console.error('Error updating document:', error);
+      setShowDeletedMessage(true); 
+      setTimeout(() => {
+        setShowDeletedMessage(false);
+      }, 3000);
     });
   };
 
@@ -54,7 +58,6 @@ function EditTodo(): JSX.Element {
     setTime(new Date());
     contextValue?.setSelectedTodo(null);
   };
-
 
   return (
     <>
@@ -88,7 +91,7 @@ function EditTodo(): JSX.Element {
                     placeholder="Edit todo..."
                     autoFocus
                     maxLength={45}
-                    required
+                    required                    
                   />
                 </div>
                 <div className={todoform.pickday}>
@@ -147,6 +150,9 @@ function EditTodo(): JSX.Element {
           </div>
         </div>
       ) : null}
+            {showDeletedMessage && (
+        <div className={styles.deletedMessage}>Todo has been deleted</div>
+      )}
     </>
   );
 }
