@@ -4,7 +4,6 @@ import Logout from './Logout';
 import styles from '../styles/User.module.css'
 
 function User(){
-//Logout imitation*
     return (
         <div className={styles.User}>
             <div className={styles.logo}>
