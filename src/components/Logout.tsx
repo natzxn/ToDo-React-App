@@ -2,6 +2,7 @@ import React from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
+import styles from '../styles/User.module.css'
 
 const Logout = () => {
   const navigate = useNavigate(); 
@@ -17,7 +18,7 @@ const Logout = () => {
   };
 
   return (
-    <a href="#" onClick={handleLogout}>Logout</a>
+    <a className={styles.logout} href="#" onClick={handleLogout}>Logout</a>
   );
 }
 
