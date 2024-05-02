@@ -35,9 +35,9 @@ const Todos: FC = () => {
     
 
   return (
-    <div className={styles.Todos}>
+    <main className={styles.Todos}>
       <div className={styles.selectedtask}>{selectedDay}</div>
-      <div className={styles.todos}>
+      <section className={styles.todos}>
         {selectedDay === 'next 7 days' || selectedDay === 'previous 7 days' ? (
           <DaysView todos={filteredTodos} viewType={selectedDay === 'next 7 days' ? 'next' : 'previous'} />
         ) : selectedDay === 'all days' ? (
@@ -50,8 +50,8 @@ const Todos: FC = () => {
             ) : null
           )
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
