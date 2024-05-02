@@ -3,24 +3,24 @@
     border-bottom: 1px solid #ebebeb;
 }
 
-.Calendar .header {
+.header {
     display: flex;
     align-items: center;
 }
 
-.Calendar .header .title {
+.title {
     display: flex;
     align-items: center;
     flex: 1;
 }
 
-.Calendar .header .title p {
+.titleText {
     margin-left: 5px;
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.Calendar .header .btns span {
+.btns {
     border-radius: 50%;
     cursor: pointer;
     width: 20px;
@@ -30,16 +30,16 @@
     justify-content: center;
 }
 
-.Calendar .header .btns span:hover {
+.btns:hover {
     background-color: #ebebeb;
     transition: all 300ms ease-in-out;
 }
 
-.Calendar .items {
+.items {
     padding: 0.5rem;
 }
 
-.Calendar .items .item {
+.item {
     padding: 0.25rem;
     margin: 5px;
     font-size: 1rem;
