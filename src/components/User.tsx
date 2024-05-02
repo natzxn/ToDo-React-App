@@ -5,15 +5,15 @@ import styles from '../styles/User.module.css'
 
 function User(){
     return (
-        <div className={styles.User}>
+        <header className={styles.User}>
             <div className={styles.logo}>
                 <img src={logo} alt="logo" />
             </div>
             <div className={styles.info}>
-                <p>Your to-do list!</p>
+                <h1 className={styles.title}>Your to-do list!</h1>
                 <Logout />
             </div>
-        </div>
+        </header> 
     )
 }
 
