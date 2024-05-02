@@ -1,34 +1,14 @@
-.Next7Days .day {
+.day {
     margin: 5px;
     display: flex;
 }
 
-.Next7Days .day .name {
+.name {
     font-weight: bold;
     font-size: 1.1rem;
 }
 
-.Next7Days .day .total {
-    margin-left: 10px;
-    color: #3ead95;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.Previous7Days .day {
-    margin: 5px;
-    display: flex;
-}
-
-.Previous7Days .day .name {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.Previous7Days .day .total {
+.total {
     margin-left: 10px;
     color: #3ead95;
     font-size: 1rem;
