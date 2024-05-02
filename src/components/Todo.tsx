@@ -69,18 +69,18 @@ const Todo: FC<TodoProps> = ({ todo }) => {
 
   return (
     <animated.div style={fadeIn} className={`${styles.Todo} ${isTaskDue ? 'overdue' : ''}`}>
-      <div
+      <section
         className={styles.container}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         <div className="check-todo" onClick={() => checkTodo(todo)}>
           {todo.checked ? (
-            <span className='checked'>
+            <span className={styles.checked}>
               <img width="16" height="16" src="https://img.icons8.com/office/16/ok--v1.png" alt="ok--v1"/>
             </span>
           ) : (
-            <span className="unchecked">
+            <span className={styles.unchecked}>
               {isTaskDue ? (
                 <img width="16" height="16" src="https://img.icons8.com/ios-filled/16/FA5252/cancel.png" alt="x"/>
               ) : (
@@ -93,18 +93,18 @@ const Todo: FC<TodoProps> = ({ todo }) => {
             onClick={() => setSelectedTodo(todo)}
             >
           <p style={{ color: todo.checked ? '#bebebe' : '#000000' }}>{todo.text}</p>
-          <span>
+          <span className={styles.textDate}>
             {moment(todo.date).format('DD/MM/YYYY')} - {moment(todo.time).format('HH:mm')}
           </span>
 
           <div className={`${styles.line} ${todo.checked ? styles["line-through"] : ""}`}></div>
         </div>
-        <div className="delete-todo"
+        <div className={styles.deleteTodo}
               onClick={() => handleDelete(todo)}
         >
           {(hover || todo.checked) && <span><img width="17" height="17" src="https://img.icons8.com/parakeet-line/17/trash.png" alt="trash"/></span>}
         </div>
-      </div>
+      </section>
     </animated.div>
   );
 };
