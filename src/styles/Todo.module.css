@@ -2,16 +2,18 @@
     padding: 0.5rem 1rem;
 }
 
-.Todo .container {
+.container {
     display: flex;
     align-items: center;
 }
 
-.Todo .container span {
+.checked,
+.unchecked,
+.deleteTodo {
     cursor: pointer;
 }
 
-.Todo .container .text {
+.text {
     position: relative;
     flex: 1;
     margin: 0 0 0 8px;
@@ -20,14 +22,14 @@
     max-width: 440px;
 }
 
-.Todo .container .text span {
+.textDate {
     font-size: 1rem;
     color: #bebebe;
 }
 
 
-.Todo .container .text .line {
-    height: 1px;
+.line {
+    height: 1px; 
     background: #bebebe;
     position: absolute;
     top: 25%;
@@ -35,6 +37,6 @@
     transition: width 250ms ease-in-out;
 }
 
-.Todo .container .text .line-through {
+.line-through {
     width: 100%;
 }
