@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
   }
   
-.LoginPage .box {
+.box {
     background: rgba(255, 255, 255, 0.247);
     border-radius: 5px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
@@ -22,7 +22,7 @@
     flex-direction: column;
 }
 
-.btn button {
+.login {
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -39,12 +39,12 @@
     margin: 1rem 0;
 }
 
-.btn button img {
+.login img {
     margin: 0.3rem;
 }
 
 
- .btn button:hover {
+ .login:hover {
     filter: brightness(1.1);
     transition: all .2s ease;
 }
