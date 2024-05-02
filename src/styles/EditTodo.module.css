@@ -2,7 +2,7 @@
     position: absolute;
     bottom: 40px;
     left: calc(40px + 450px + 40px);
-    background-color: #FFF;
+    background-color: #FFF; 
     height: 80%;
     width: 450px;
     border-radius: 15px;
@@ -25,7 +25,7 @@
     }
 }
 
-.EditTodo .header {
+.header {
     margin: 1rem 1rem;
     font-size: 1.3rem;
     font-weight: bold;
@@ -35,16 +35,16 @@
     align-items: center;
 }
 
-.EditTodo .header img {
+.header img {
     margin-right: 7px;
 }
 
-.TodoForm .pickday {
+.pickday {
     padding: 1.1rem 1.5rem 0 1.5rem;
     position: relative;
 }
 
-.TodoForm .picktime {
+.picktime {
     padding: 1.1rem 1.5rem 0 1.5rem;
     position: relative;
 }
@@ -63,10 +63,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f44336; 
-    color: white; 
-    padding: 15px 20px; 
-    border-radius: 5px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    z-index: 1000; 
+    background-color: #f44336; /* Kolor tła */
+    color: white; /* Kolor tekstu */
+    padding: 15px 20px; /* Wewnętrzne marginesy */
+    border-radius: 5px; /* Zaokrąglenie rogów */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Cień */
+    z-index: 1000; /* Z-index, aby wyświetlał się na wierzchu */
   }
