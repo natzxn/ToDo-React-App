@@ -6,12 +6,12 @@
     border: 1px solid #ebebeb;
 }
 
-.User .info p {
+.title {
     font-size: 1rem;
     font-weight: bold;
 }
 
-.User .info a {
+.logout {
     text-decoration: underline;
     color: #3ead95;
     font-size: 0.9rem;
