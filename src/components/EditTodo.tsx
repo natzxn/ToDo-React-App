@@ -62,8 +62,8 @@ function EditTodo(): JSX.Element {
   return (
     <>
       {selectedTodo ? (
-        <div className={styles.EditTodo}>
-          <div className={styles.header}>
+        <aside className={styles.EditTodo}>
+          <header className={styles.header}>
             <img
               width="25"
               height="25"
@@ -71,7 +71,7 @@ function EditTodo(): JSX.Element {
               alt="pencil-tip"
             />{" "}
             Edit Todo
-          </div>
+          </header>
           <div className="container">
             <LocalizationProvider
               dateAdapter={AdapterMoment}
@@ -134,7 +134,7 @@ function EditTodo(): JSX.Element {
                 </div>
                 <div className={todoform.buttons}>
                   <div className={todoform.confirm}>
-                    <button type={todoform.submit}>Confirm</button>
+                    <button type='submit' className={todoform.submit}>Confirm</button>
                   </div>
                   <div className={todoform.cancel} onClick={handleCloseEdit}>
                     <img
@@ -148,7 +148,7 @@ function EditTodo(): JSX.Element {
               </form>
             </LocalizationProvider>
           </div>
-        </div>
+        </aside>
       ) : null}
             {showDeletedMessage && (
         <div className={styles.deletedMessage}>Todo has been deleted</div>
