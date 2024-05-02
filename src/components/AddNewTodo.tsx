@@ -59,9 +59,9 @@ const AddNewTodo: React.FC = () => {
   }
 
   return (
-    <div className={styles.AddNewTodo}>
+    <section className={styles.AddNewTodo}>
       <div className={styles.btn}>
-        <button onClick={() => setShowModal(true)}>
+        <button className={styles.addTask} onClick={() => setShowModal(true)}>
           <img
             width="19"
             height="19"
@@ -102,7 +102,7 @@ const AddNewTodo: React.FC = () => {
                     src="https://img.icons8.com/fluency/35/calendar--v1.png"
                     alt="calendar--v1"
                   />
-                  <p>Choose a day</p>
+                  <p className={styles.choose}>Choose a day</p>
                 </div>
                 <DatePicker
                   value={moment(formState.day)}
@@ -123,7 +123,7 @@ const AddNewTodo: React.FC = () => {
                     src="https://img.icons8.com/fluency/35/clock--v1.png"
                     alt="clock--v1"
                   />
-                  <p>Choose time</p>
+                  <p className={styles.choose}>Choose time</p>
                 </div>
                 <TimePicker
                   value={moment(formState.time)}
@@ -152,7 +152,7 @@ const AddNewTodo: React.FC = () => {
                   />
                 </div>
                 <div className={styles.confirm}>
-                  <button type={styles.submit}>
+                  <button type='submit' className={styles.submit}>
                     <img
                       width="19"
                       height="19"
@@ -167,7 +167,7 @@ const AddNewTodo: React.FC = () => {
           </LocalizationProvider>
         </div>
       </Modal>
-    </div>
+    </section>
   );
 };
 
