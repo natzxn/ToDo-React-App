@@ -21,18 +21,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles.LoginPage}>
-      <div className={styles.box}>
+    <section className={styles.LoginPage}>
+      <main className={styles.box}>
         <div className={styles.btn}>
           <button className={styles.login} onClick={handleLogin}>
             <img src='https://cdn.iconscout.com/icon/free/png-256/free-google-152-189813.png' width="30" alt="login"></img> 
             Login with Google
           </button>
         </div>
-      </div>
-    </div>
+      </main>
+    </section>
   );
-}
+};
 
 
 export default LoginPage;
