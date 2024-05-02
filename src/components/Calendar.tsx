@@ -29,21 +29,19 @@ import styles from '../styles/Calendar.module.css'
     
 
     return (
-        <div className={styles.Calendar}>
-            <div className={styles.header}>
+        <nav className={styles.Calendar}>
+            <header className={styles.header}>
                 <div className={styles.title}>
                     <img width="36" height="36" src="https://img.icons8.com/pulsar-color/36/calendar-plus.png" alt="calendar-plus"/>
-                    <p>Calendar</p>
+                    <h1 className={styles.titleText}>Calendar</h1>
                 </div>
                 <animated.div 
                 style={spin} 
                 onClick={() => setShowMenu(!showMenu)}
                 className={styles.btns}>
-                    <span>
                         <img width="20" height="20" src="https://img.icons8.com/material-outlined/20/circled-chevron-up.png" alt="circled-chevron-up"/>
-                    </span>
                 </animated.div>
-            </div>
+            </header>
           <animated.div style={menuAnimation} className={styles.items}>
             <ul>
               {calendarItems.map((item) => (
@@ -57,7 +55,7 @@ import styles from '../styles/Calendar.module.css'
               ))}
             </ul>
           </animated.div>
-        </div>
+        </nav>
     )
 }
 
