@@ -56,7 +56,7 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
   });
 
   return (
-    <div className={viewType === 'next' ? styles.Next7Days : styles.Previous7Days}>
+    <nav className={viewType === 'next' ? styles.Next7Days : styles.Previous7Days}>
       {arrangeDays.map(day => (
         <div key={day.number}>
           <div className={styles.day}>
@@ -72,7 +72,7 @@ const DaysView: FC<DaysViewProps> = ({ todos, viewType }) => {
           </div>
         </div>
       ))}
-    </div>
+    </nav>
   );
 };
 
