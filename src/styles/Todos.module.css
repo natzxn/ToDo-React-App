@@ -23,7 +23,7 @@
         width: 350px;
         height: 40%;
         bottom: 53%;
-    }
+    } 
 }
 
 .Todos::-webkit-scrollbar {
@@ -40,7 +40,7 @@
     border: 3px solid #ffffff;
   }
 
-.Todos .selectedtask {
+.selectedtask {
     margin: 1rem 0.5rem;
     text-transform: capitalize;
     font-size: 1.3rem;
@@ -49,6 +49,6 @@
     border-bottom: 1px solid #d4d4d4;
 }
 
-.Todos .todos {
+.todos {
     overflow-y: auto;
 }
