@@ -41,7 +41,10 @@ const Todos: FC = () => {
         {selectedDay === 'next 7 days' || selectedDay === 'previous 7 days' ? (
           <DaysView todos={filteredTodos} viewType={selectedDay === 'next 7 days' ? 'next' : 'previous'} />
         ) : selectedDay === 'all days' ? (
-          filteredTodos.map((todo: TodoItem) => <Todo todo={todo} key={todo.id} />)
+          filteredTodos
+          .slice() 
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) 
+          .map((todo: TodoItem) => <Todo todo={todo} key={todo.id} />)
         ) : (
           filteredTodos.map((todo: TodoItem) =>
             selectedDay === 'today' &&
