@@ -35,7 +35,7 @@ const Todos: FC = () => {
     
 
   return (
-    <main className={styles.Todos}>
+    <section className={styles.Todos}>
       <div className={styles.selectedtask}>{selectedDay}</div>
       <section className={styles.todos}>
         {selectedDay === 'next 7 days' || selectedDay === 'previous 7 days' ? (
@@ -54,7 +54,7 @@ const Todos: FC = () => {
           )
         )}
       </section>
-    </main>
+    </section>
   );
 };
 
